@@ -743,7 +743,7 @@ fbq("track","ViewContent");
       <span class="pullquote-source">— Radosław Sikorski, Minister Spraw Zagranicznych RP</span>
     </div>
 
-    <h2>Czego nie mówią w telewizji</h2>
+    <h2 id="triggerSection">Czego nie mówią w telewizji</h2>
 
     <img src="/images/b1-dom.png" alt="Polskie mieszkanie bez prądu — ciemność i niepewność" class="article-img">
 
@@ -850,7 +850,9 @@ fbq("track","ViewContent");
     const el = document.documentElement;
     const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
-    document.getElementById('stickyCta').classList.toggle('visible', el.scrollTop > 400);
+    const trigger = document.getElementById('triggerSection');
+    const triggerTop = trigger ? trigger.getBoundingClientRect().top + el.scrollTop : 99999;
+    document.getElementById('stickyCta').classList.toggle('visible', el.scrollTop > triggerTop - el.clientHeight);
   });
 
   // Hamburger
