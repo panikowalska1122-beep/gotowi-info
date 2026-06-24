@@ -1,0 +1,603 @@
+<!-- wp:html -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 rzeczy, których nie będziesz wiedział podczas blackoutu | Gotowi.info</title>
+<meta name="description" content="Podczas blackoutu iberyjskiego miliony ludzi nie wiedziały jednego — ile to potrwa. Oto 3 rzeczy których nie wiesz bez radia awaryjnego." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f7f3ec;
+    --paper-dark: #ede8df;
+    --red: #c0392b;
+    --red-dark: #922b21;
+    --amber: #d4890a;
+    --amber-light: #f0a500;
+    --muted: #6b6256;
+    --border: #d4cdc2;
+    --green-ok: #1e6b3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 8px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .top-bar span { color: var(--amber-light); }
+
+  .masthead {
+    background: var(--paper);
+    border-bottom: 3px solid var(--ink);
+    padding: 18px 20px 14px;
+    text-align: center;
+  }
+  .masthead-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+  }
+  .masthead-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    flex-wrap: wrap;
+  }
+  .masthead-meta .sep { color: var(--border); }
+
+  .breaking-banner {
+    background: var(--red);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation: pulse-bg 3s ease-in-out infinite;
+  }
+  @keyframes pulse-bg {
+    0%, 100% { background: var(--red); }
+    50% { background: var(--red-dark); }
+  }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .article-header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .article-category {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+  }
+  .article-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .article-headline em { font-style: italic; color: var(--red); }
+  .article-deck {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.55;
+    border-left: 4px solid var(--amber);
+    padding-left: 20px;
+    margin-bottom: 24px;
+  }
+  .article-byline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .article-byline strong { color: var(--ink); }
+
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--red);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  .article-body { padding-bottom: 60px; }
+  .article-body p { margin-bottom: 24px; font-size: 18px; line-height: 1.8; color: var(--ink); }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 48px 0 20px;
+    padding-top: 32px;
+    border-top: 2px solid var(--ink);
+    line-height: 1.25;
+  }
+
+  .pullquote {
+    border-left: 5px solid var(--red);
+    background: var(--paper-dark);
+    padding: 24px 28px;
+    margin: 36px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    position: relative;
+  }
+  .pullquote::before {
+    content: '"';
+    font-size: 80px;
+    color: var(--red);
+    opacity: 0.2;
+    position: absolute;
+    top: -10px; left: 16px;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+  .pullquote-source {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* NUMBERED LIST */
+  .numbered-list { list-style: none; margin: 28px 0 36px; }
+  .numbered-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .numbered-item:last-child { border-bottom: none; }
+  .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--red);
+    opacity: 0.25;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .numbered-content {}
+  .numbered-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .numbered-text { font-size: 16px; color: var(--muted); line-height: 1.7; }
+
+  .fact-box {
+    border: 2px solid var(--ink);
+    padding: 24px 28px;
+    margin: 36px 0;
+    background: var(--paper);
+    position: relative;
+  }
+  .fact-box-label {
+    position: absolute;
+    top: -12px; left: 20px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 10px;
+  }
+  .fact-box p { margin-bottom: 12px; font-size: 16px; }
+  .fact-box p:last-child { margin-bottom: 0; }
+  .fact-box strong { color: var(--red); }
+
+  .ornament { text-align: center; color: var(--border); font-size: 20px; margin: 40px 0; letter-spacing: 0.3em; }
+
+  /* PRODUCT SECTION */
+  .product-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-section::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 11px);
+    pointer-events: none;
+  }
+  .product-badge {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  .product-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 900;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .product-subhead { font-size: 17px; color: #c8bfaf; margin-bottom: 28px; line-height: 1.6; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 520px) { .features-grid { grid-template-columns: 1fr; } }
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255,255,255,0.07);
+    padding: 14px 16px;
+    border-left: 3px solid var(--amber);
+  }
+  .feature-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .feature-text strong {
+    display: block;
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .feature-text span { font-size: 13px; color: #a09080; line-height: 1.4; }
+
+  .price-vs {
+    text-align: center;
+    padding: 14px;
+    background: rgba(192, 57, 43, 0.2);
+    border: 1px solid rgba(192, 57, 43, 0.4);
+    margin: 28px 0;
+  }
+  .price-vs-main { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: white; }
+  .price-vs-sub { font-size: 13px; color: #a09080; margin-top: 6px; }
+
+  .cta-block { text-align: center; margin: 32px 0 8px; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    transition: all 0.2s ease;
+  }
+  .cta-btn:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(192,57,43,0.4); }
+  .cta-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #888; margin-top: 10px; letter-spacing: 0.08em; }
+
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--red);
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    z-index: 1000;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .sticky-cta.visible { transform: translateY(0); }
+  .sticky-cta-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sticky-cta-btn {
+    display: inline-block;
+    background: white;
+    color: var(--red);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+  }
+
+  .article-footer {
+    padding: 40px 0;
+    border-top: 2px solid var(--ink);
+    margin-top: 40px;
+    text-align: center;
+  }
+  .footer-disclaimer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; animation: fadeInUp 0.7s ease forwards; }
+  .fade-in-1 { animation-delay: 0.1s; }
+  .fade-in-2 { animation-delay: 0.3s; }
+
+  @media (max-width: 600px) {
+    .product-section { padding: 36px 24px; }
+    .article-header { padding: 32px 0 24px; }
+    .article-body p { font-size: 17px; }
+    .pullquote { padding: 18px 20px; font-size: 18px; }
+    .numbered-item { gap: 16px; }
+    .number { font-size: 36px; width: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-text">📻 BezpieczneRadio — wysyłka z Polski, gwarancja 2 lata</div>
+  <a href="https://bezpieczneradio.pl/produkt/bezpieczne-radio-7w1-pro-kopia/" class="sticky-cta-btn">Sprawdź dostępność →</a>
+</div>
+
+<div class="top-bar">
+  Materiał sponsorowany &nbsp;<span>|</span>&nbsp; Bezpieczeństwo &amp; Przygotowanie &nbsp;<span>|</span>&nbsp; Czas czytania: ok. 4 min
+</div>
+
+<div class="masthead">
+  <span class="masthead-name">Gotowi.info</span>
+  <div class="masthead-tagline">Portal edukacyjny o przygotowaniu kryzysowym</div>
+  <div class="masthead-meta">
+    <span>Redakcja Gotowi.info</span>
+    <span class="sep">|</span>
+    <span>Materiał partnerski</span>
+    <span class="sep">|</span>
+    <span>Czas czytania: ~4 min</span>
+  </div>
+</div>
+
+<div class="breaking-banner">
+  ⚠️ BLACKOUT IBERYJSKI 2025 — 55 MILIONÓW LUDZI BEZ INFORMACJI. TO MOŻE SIĘ ZDARZYĆ WSZĘDZIE.
+</div>
+
+<div class="container">
+
+  <header class="article-header fade-in fade-in-1">
+    <span class="article-category">Bezpieczeństwo energetyczne</span>
+    <h1 class="article-headline">
+      3 rzeczy, których <em>nie będziesz wiedział</em> podczas blackoutu — jeśli nie masz radia
+    </h1>
+    <p class="article-deck">
+      Podczas blackoutu iberyjskiego w 2025 roku miliony ludzi nie wiedziały jednego: ile to potrwa. I właśnie ta niewiedza była najgorsza. Oto co tracisz gdy znika prąd — i co możesz z tym zrobić.
+    </p>
+    <div class="article-byline">
+      Przez <strong>Redakcję Gotowi.info</strong> &nbsp;·&nbsp; <strong>Materiał partnerski</strong>
+    </div>
+  </header>
+
+  <article class="article-body fade-in fade-in-2">
+
+    <div class="pullquote">
+      „Stałam w kolejce do bankomatu dwie godziny. Nie wiedziałam czy to koniec świata, atak terrorystyczny, czy po prostu awaria. Nikt nic nie wiedział."
+      <span class="pullquote-source">— Mieszkanka Madrytu, blackout iberyjski, kwiecień 2025</span>
+    </div>
+
+    <p>
+      29 kwietnia 2025 roku w ciągu kilku sekund prąd zniknął dla 55 milionów ludzi w Hiszpanii i Portugalii. Internet padł. Zasięg komórkowy wyczerpał się po kilku godzinach. Zostali sami — bez żadnego źródła informacji.
+    </p>
+
+    <p>
+      To samo może zdarzyć się w Polsce. Sieć energetyczna ma średnio 47 lat. Latem 2022 roku rezerwa mocy KSE spadła do zera. Jedna silna burza, jedna awaria węzła — i całe miasto lub gmina zostaje odcięta.
+    </p>
+
+    <p>
+      Pytanie nie brzmi „czy". Brzmi „kiedy" — i <strong>co wtedy będziesz wiedział.</strong>
+    </p>
+
+    <h2>3 rzeczy których nie wiesz bez radia awaryjnego</h2>
+
+    <ul class="numbered-list">
+      <li class="numbered-item">
+        <div class="number">1</div>
+        <div class="numbered-content">
+          <div class="numbered-title">Ile to potrwa</div>
+          <div class="numbered-text">To pytanie zadaje sobie każdy w pierwszych minutach. Godzina? Dobę? Tydzień? Bez radia nie masz dostępu do żadnego oficjalnego komunikatu. Nie wiesz czy czekać w domu czy działać. Ta niepewność paraliżuje bardziej niż sam brak prądu.</div>
+        </div>
+      </li>
+      <li class="numbered-item">
+        <div class="number">2</div>
+        <div class="numbered-content">
+          <div class="numbered-title">Jak rozległy jest problem</div>
+          <div class="numbered-text">Czy to awaria Twojej ulicy, całego miasta, czy czegoś poważniejszego? Czy gminy sąsiednie też są odcięte? Czy pomoc jest w drodze? Bez radia jesteś w informacyjnej bańce — słyszysz tylko to, co powiedzą sąsiedzi na klatce schodowej.</div>
+        </div>
+      </li>
+      <li class="numbered-item">
+        <div class="number">3</div>
+        <div class="numbered-content">
+          <div class="numbered-title">Czy jesteś bezpieczny</div>
+          <div class="numbered-text">Skażenie wody, ewakuacja, zagrożenie gazem, informacje o pomocy medycznej — wszystko to idzie przez radio. Lokalne stacje jako pierwsze podają komunikaty kryzysowe. Bez odbiornika jesteś głuchy na wszystkie ostrzeżenia, które mogą dotyczyć bezpośrednio Ciebie i Twojej rodziny.</div>
+        </div>
+      </li>
+    </ul>
+
+    <h2>Dlaczego telefon nie wystarczy</h2>
+
+    <div class="fact-box">
+      <div class="fact-box-label">Fakty — telefon podczas blackoutu</div>
+      <p>Stacje BTS sieci komórkowych mają akumulatory awaryjne na <strong>2–4 godziny</strong>. Potem zasięg znika.</p>
+      <p>Nawet gdy jest zasięg — sieć jest <strong>przeciążona</strong>. Połowa miasta dzwoni jednocześnie.</p>
+      <p>Internet odpada razem z prądem — <strong>bez WiFi i LTE nie ma social mediów, portali, map.</strong></p>
+      <p>Bateria smartfona wytrzymuje <strong>6–10 godzin</strong> przy normalnym użytkowaniu. Bez ładowania — tylko tyle.</p>
+    </div>
+
+    <p>
+      Radio analogowe nie potrzebuje internetu. Nie potrzebuje stacji BTS. Sygnał nadawany jest bezpośrednio — przez powietrze, niezależnie od stanu sieci energetycznej. Lokalne stacje radiowe mają generatory i <strong>nadają przez cały kryzys.</strong>
+    </p>
+
+    <p>
+      Dlatego radio awaryjne to nie gadżet dla survival-maniaków. To <strong>jedyne niezawodne źródło informacji</strong> gdy wszystko inne milczy. Zaleca je Rządowe Centrum Bezpieczeństwa, MON i Akademia Pożarnicza jako podstawowy element zestawu kryzysowego każdej polskiej rodziny.
+    </p>
+
+    <div class="ornament">— ✦ —</div>
+
+    <div class="product-section">
+
+      <div class="product-badge">Rekomendacja redakcji Gotowi.info</div>
+
+      <h2 class="product-headline" style="border:none; padding:0; margin-bottom:16px;">BezpieczneRadio — działa gdy telefon już dawno padł</h2>
+
+      <p class="product-subhead">
+        Wielopasmowe radio awaryjne z 7 pasmami (FM, AM, CB i krótkofalowe) i ładowaniem USB. Wysyłka z Polski, polska gwarancja. Gratis kabel USB do każdego zamówienia.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📻</div>
+          <div class="feature-text">
+            <strong>7 pasm radiowych</strong>
+            <span>FM, AM, CB + krótkofalowe. Zawsze coś nadaje.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔋</div>
+          <div class="feature-text">
+            <strong>Ładowanie USB</strong>
+            <span>Działa z powerbankiem lub ładowarką samochodową.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚙️</div>
+          <div class="feature-text">
+            <strong>Korbka dynamo</strong>
+            <span>Prąd z własnych rąk — gdy nie ma nic innego.</span>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔦</div>
+          <div class="feature-text">
+            <strong>Latarka LED</strong>
+            <span>Oświetlenie i orientacja w ciemności.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-vs">
+        <div class="price-vs-main"><strong style="color:#81c784;">199,99 zł</strong></div>
+        <div class="price-vs-sub">Polska gwarancja · Wysyłka z PL · 30 dni na zwrot · Gratis kabel USB</div>
+      </div>
+
+      <div class="cta-block">
+        <a href="https://bezpieczneradio.pl/produkt/bezpieczne-radio-7w1-pro-kopia/" class="cta-btn">Sprawdź dostępność i zamów →</a>
+        <p class="cta-sub">Wysyłka z Polski · Płatność przy odbiorze dostępna · 30 dni na zwrot</p>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer class="article-footer">
+    <p class="footer-disclaimer">
+      Materiał sponsorowany przez BezpieczneRadio. Gotowi.info jest portalem edukacyjnym — nie reprezentujemy instytucji rządowych. Dane o blackoucie iberyjskim: Red Eléctrica, OZE.pl. Dane o KSE: PSE S.A. Lista RCB: alert.rcb.gov.pl.
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.offsetHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    const stickyCta = document.getElementById('stickyCta');
+    if (progress > 40) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  });
+</script>
+
+</body>
+</html>
+<!-- /wp:html -->
