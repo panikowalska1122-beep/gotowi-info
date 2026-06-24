@@ -1,0 +1,654 @@
+<!-- wp:html -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gotowi.info — Czy Polska jest gotowa na blackout?</title>
+<meta name="description" content="Gotowi.info to portal informacyjny monitorujący gotowość Polaków na sytuacje kryzysowe: blackout, powódź, przerwy w dostawach. Sprawdź czy jesteś przygotowany." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f7f3ec;
+    --paper-dark: #ede8df;
+    --red: #c0392b;
+    --red-dark: #922b21;
+    --amber: #d4890a;
+    --amber-light: #f0a500;
+    --muted: #6b6256;
+    --border: #d4cdc2;
+    --green-ok: #1e6b3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  /* TOP BAR */
+  .top-bar {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 8px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .top-bar span { color: var(--amber-light); }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--paper);
+    border-bottom: 3px solid var(--ink);
+    padding: 22px 20px 16px;
+    text-align: center;
+  }
+  .masthead-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: block;
+    text-decoration: none;
+  }
+  .masthead-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .masthead-meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    flex-wrap: wrap;
+  }
+  .masthead-meta .sep { color: var(--border); }
+
+  /* BREAKING */
+  .breaking-banner {
+    background: var(--red);
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation: pulse-bg 3s ease-in-out infinite;
+  }
+  @keyframes pulse-bg {
+    0%, 100% { background: var(--red); }
+    50% { background: var(--red-dark); }
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0 48px;
+    border-bottom: 2px solid var(--ink);
+    text-align: center;
+  }
+  .hero-label {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 5.5vw, 52px);
+    font-weight: 900;
+    line-height: 1.12;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-headline em { font-style: italic; color: var(--red); }
+  .hero-deck {
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto 36px;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    transition: all 0.2s ease;
+  }
+  .hero-cta:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(192,57,43,0.35); }
+  .hero-cta-sub {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    text-align: center;
+  }
+  .stat-item {
+    padding: 12px 20px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    color: var(--amber-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #a09080;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ABOUT */
+  .about-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .about-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+    line-height: 1.25;
+  }
+  .about-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--ink);
+    max-width: 680px;
+    margin-bottom: 18px;
+  }
+  .about-note {
+    background: var(--paper-dark);
+    border-left: 4px solid var(--amber);
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin-top: 24px;
+    max-width: 680px;
+  }
+
+  /* ALERT GRID */
+  .alerts-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .alerts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .alert-card {
+    border: 2px solid var(--ink);
+    padding: 24px 20px;
+    position: relative;
+    background: var(--paper);
+  }
+  .alert-card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .alert-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .alert-card-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .alert-card-level {
+    position: absolute;
+    top: -1px; right: -1px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    color: white;
+  }
+  .level-high { background: var(--red); }
+  .level-med  { background: var(--amber); }
+
+  /* FEATURED ARTICLE */
+  .featured-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .featured-card {
+    border: 2px solid var(--ink);
+    padding: 36px 36px 32px;
+    position: relative;
+    background: var(--paper);
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -12px; left: 24px;
+    background: var(--red);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+  }
+  .featured-content { flex: 1; }
+  .featured-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .featured-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .featured-title em { font-style: italic; color: var(--red); }
+  .featured-deck {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 22px;
+  }
+  .featured-link {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+  }
+  .featured-link:hover { background: var(--red); }
+  .featured-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  /* PRODUCT BANNER */
+  .product-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px;
+    margin: 56px 0;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .product-banner-left { flex: 1; min-width: 260px; }
+  .product-banner-right { text-align: center; flex-shrink: 0; }
+  .product-banner-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 14px;
+  }
+  .product-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .product-banner-desc {
+    font-size: 15px;
+    color: #c8bfaf;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+  .product-banner-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .product-banner-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #a09080;
+    margin-bottom: 20px;
+  }
+  .banner-cta {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    transition: all 0.2s ease;
+  }
+  .banner-cta:hover { background: var(--red-dark); }
+  .banner-features {
+    list-style: none;
+    margin-top: 20px;
+  }
+  .banner-features li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #a09080;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.04em;
+  }
+  .banner-features li::before { content: '→ '; color: var(--amber-light); }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--ink);
+    color: #a09080;
+    padding: 40px 0 30px;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .footer-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b6256;
+    margin-bottom: 20px;
+  }
+  .footer-disclaimer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #4a4035;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .alerts-grid { grid-template-columns: 1fr; }
+    .featured-card { flex-direction: column; padding: 28px 20px; }
+    .product-banner { padding: 32px 24px; flex-direction: column; }
+    .product-banner-right { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  Portal informacyjny &nbsp;<span>|</span>&nbsp; Monitorujemy gotowość Polski na sytuacje kryzysowe &nbsp;<span>|</span>&nbsp; Materiały partnerskie
+</div>
+
+<div class="masthead">
+  <a href="/" class="masthead-name">Gotowi.info</a>
+  <div class="masthead-tagline">Niezależny portal o bezpieczeństwie i przygotowaniu kryzysowym</div>
+  <div class="masthead-meta">
+    <span>Polska</span>
+    <span class="sep">|</span>
+    <span>Blackout · Powódź · Zagrożenia hybrydowe</span>
+    <span class="sep">|</span>
+    <span>Redakcja Gotowi.info</span>
+  </div>
+</div>
+
+<div class="breaking-banner">
+  ⚡ ALERT — POLSKA INFRASTRUKTURA ENERGETYCZNA MA ŚREDNIO 47 LAT — EKSPERCI: JESTEŚMY NIEPRZYGOTOWANI
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-label">Stan gotowości: niewystarczający</span>
+    <h1 class="hero-headline">
+      Sprawdzamy czy Polska jest gotowa na <em>blackout</em>. Wyniki są niepokojące.
+    </h1>
+    <p class="hero-deck">
+      Redakcja Gotowi.info monitoruje stan przygotowania Polaków na sytuacje kryzysowe. Blackout, powódź, zagrożenia hybrydowe — dokumentujemy fakty i mówimy wprost: większość z nas nie jest gotowa.
+    </p>
+    <a href="https://bezpieczneradio.pl/produkt/bezpieczne-radio-7w1-pro-kopia/" class="hero-cta">Sprawdź jak się przygotować →</a>
+    <span class="hero-cta-sub">Rekomendacja redakcji · BezpieczneRadio 7w1 PRO · 199,99 zł · Wysyłka z Polski</span>
+  </section>
+
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">47 lat</span>
+        <div class="stat-label">Średni wiek polskiej<br>infrastruktury energetycznej</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">500 tys.</span>
+        <div class="stat-label">Polaków bez prądu<br>podczas nawałnicy 2017</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">0 MW</span>
+        <div class="stat-label">Rezerwa mocy KSE<br>latem 2022 roku</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- O REDAKCJI -->
+  <section class="about-section">
+    <div class="section-label">O redakcji</div>
+    <h2 class="about-headline">Piszemy o tym, o czym inni wolą milczeć</h2>
+    <p class="about-text">
+      Gotowi.info to portal edukacyjny monitorujący poziom gotowości Polaków na sytuacje kryzysowe. Analizujemy dane publiczne, relacjonujemy rzeczywiste zdarzenia i zadajemy jedno konkretne pytanie: <strong>czy jesteś przygotowany?</strong>
+    </p>
+    <p class="about-text">
+      Nie straszmy dla strachu. Opieramy się na oficjalnych danych PSE, raportach RCB i MON oraz na relacjach Polaków, którzy już przeżyli — nawałnicę, powódź, długotrwałą przerwę w dostawie prądu. Wyciągamy wnioski i mówimy wprost co zrobić.
+    </p>
+    <div class="about-note">
+      Gotowi.info jest portalem edukacyjnym. Publikujemy materiały informacyjne oraz materiały partnerskie oznaczone jako sponsorowane. Nie reprezentujemy instytucji rządowych ani służb ratunkowych.
+    </div>
+  </section>
+
+  <!-- ZAGROŻENIA -->
+  <section class="alerts-section">
+    <div class="section-label">Monitorowane zagrożenia</div>
+    <div class="alerts-grid">
+      <div class="alert-card">
+        <span class="alert-card-level level-high">Wysokie</span>
+        <span class="alert-card-icon">⚡</span>
+        <div class="alert-card-title">Blackout energetyczny</div>
+        <p class="alert-card-text">Przestarzała sieć, zero rezerwy mocy latem 2022, rosnące zagrożenie hybrydowe. Polska jest jednym z najmniej przygotowanych krajów UE.</p>
+      </div>
+      <div class="alert-card">
+        <span class="alert-card-level level-high">Wysokie</span>
+        <span class="alert-card-icon">🌊</span>
+        <div class="alert-card-title">Powodzie i nawałnice</div>
+        <p class="alert-card-text">2017 Pomorze, 2024 Dolny Śląsk. Ekstremalne zjawiska pogodowe odcinają całe gminy od prądu, wody i informacji na wiele dni.</p>
+      </div>
+      <div class="alert-card">
+        <span class="alert-card-level level-med">Rosnące</span>
+        <span class="alert-card-icon">🛡️</span>
+        <div class="alert-card-title">Zagrożenia hybrydowe</div>
+        <p class="alert-card-text">MON i RCB wskazują infrastrukturę krytyczną jako główny cel działań hybrydowych. Polska jako pierwsza linia NATO jest szczególnie narażona.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section class="featured-section">
+    <div class="section-label">Najnowszy raport redakcji</div>
+    <div class="featured-card">
+      <div class="featured-badge">Materiał partnerski</div>
+      <div class="featured-content">
+        <div class="featured-category">Bezpieczeństwo energetyczne · Raport</div>
+        <h2 class="featured-title">Czy Polska jest gotowa na blackout? Sprawdziliśmy — i wyniki są <em>niepokojące</em></h2>
+        <p class="featured-deck">
+          Wyobraź sobie: prąd znika na 3 dni. Telefon padnie po 8 godzinach. Zasięg komórkowy — po 4. Co zrobisz? Co wiesz? Przeanalizowaliśmy scenariusz blackoutu w Polsce — i sprawdziliśmy czego naprawdę potrzebujesz.
+        </p>
+        <a href="https://gotowi.info.pl/?page_id=12" class="featured-link">Czytaj raport →</a>
+        <div class="featured-meta">Czas czytania: ~8 min · Redakcja Gotowi.info</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT BANNER -->
+  <div class="product-banner">
+    <div class="product-banner-left">
+      <div class="product-banner-label">Rekomendacja redakcji Gotowi.info</div>
+      <h3 class="product-banner-title">Jedno urządzenie. Trzy pozycje z listy RCB. Działa gdy wszystko inne milczy.</h3>
+      <p class="product-banner-desc">
+        BezpieczneRadio 7w1 PRO to jedyne radio awaryjne z 7 pasmami (FM, AM, CB + krótkofalowe), ładowaniem USB i polską gwarancją. Wysyłka z Polski. Spełnia zalecenia Rządowego Centrum Bezpieczeństwa.
+      </p>
+      <ul class="banner-features">
+        <li>7 pasm radiowych — działa gdy internet jest martwy</li>
+        <li>Ładowanie USB — podtrzyma życie w telefonie</li>
+        <li>Korbka dynamo — prąd z własnych rąk, zawsze</li>
+        <li>Latarka LED + wysyłka z Polski w 24h</li>
+      </ul>
+    </div>
+    <div class="product-banner-right">
+      <div class="product-banner-price">199,99 zł</div>
+      <div class="product-banner-note">Wysyłka z PL · Gwarancja 2 lata · 30 dni na zwrot</div>
+      <a href="https://bezpieczneradio.pl/produkt/bezpieczne-radio-7w1-pro-kopia/" class="banner-cta">Sprawdź dostępność →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-name">Gotowi.info</div>
+    <div class="footer-tagline">Portal edukacyjny o przygotowaniu kryzysowym</div>
+    <div class="footer-disclaimer">
+      Gotowi.info jest portalem edukacyjnym — nie reprezentujemy instytucji rządowych ani służb ratunkowych. Materiały partnerskie są oznaczone jako sponsorowane. Dane: PSE S.A., RCB (alert.rcb.gov.pl), MON, Wikipedia. © 2025 Gotowi.info
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- /wp:html -->
