@@ -575,6 +575,161 @@
     .banner-cta { width: 100%; text-align: center; display: block; padding: 16px; }
   }
 
+
+  /* ── HAMBURGER + DRAWER ── */
+  .hamburger {
+    position: fixed;
+    top: 14px;
+    left: 16px;
+    z-index: 10000;
+    background: var(--ink);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    align-items: center;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+  .drawer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--ink);
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto;
+    padding: 24px 0 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer.open { transform: translateX(0); }
+
+  .drawer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--paper);
+    padding: 16px 24px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .drawer-logo span { color: var(--amber-light); }
+
+  .drawer-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6b6256;
+    padding: 0 24px;
+    margin-bottom: 8px;
+  }
+
+  .drawer-nav { list-style: none; padding: 0; margin-bottom: 24px; }
+  .drawer-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 24px;
+    text-decoration: none;
+    color: #c8bfaf;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .drawer-nav li a:hover {
+    background: rgba(255,255,255,0.05);
+    color: white;
+    border-left-color: var(--red);
+  }
+  .drawer-nav li a.active {
+    color: white;
+    border-left-color: var(--amber-light);
+    background: rgba(255,255,255,0.04);
+  }
+  .drawer-nav li a .nav-icon { font-size: 18px; flex-shrink: 0; }
+  .drawer-nav li a .nav-tag {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: white;
+    padding: 2px 6px;
+  }
+
+  .drawer-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 8px 24px 16px;
+  }
+
+  .drawer-product {
+    margin: 0 16px;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.3);
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+  .drawer-product:hover { background: rgba(192,57,43,0.25); }
+  .drawer-product-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 6px;
+  }
+  .drawer-product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .drawer-product-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #81c784;
+    font-weight: 700;
+  }
+
 </style>
 <!-- Meta Pixel -->
 <script>
@@ -594,6 +749,51 @@ src="https://www.facebook.com/tr?id=1528963432211707&ev=PageView&noscript=1"/></
 <!-- End Meta Pixel -->
 </head>
 <body>
+<!-- HAMBURGER -->
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<nav class="drawer" id="drawer">
+  <a href="https://gotowi.info.pl/" class="drawer-logo">GOTOWI<span>.info</span></a>
+
+  <div class="drawer-section-label">Nawigacja</div>
+  <ul class="drawer-nav">
+    <li><a href="https://gotowi.info.pl/"><span class="nav-icon">🏠</span> Strona główna</a></li>
+  </ul>
+
+  <hr class="drawer-divider">
+  <div class="drawer-section-label">Artykuły</div>
+  <ul class="drawer-nav">
+    <li><a href="https://gotowi.info.pl/blackout/"><span class="nav-icon">⚡</span> Czy Polska jest gotowa na blackout?<span class="nav-tag">A1</span></a></li>
+    <li><a href="https://gotowi.info.pl/3-rzeczy/"><span class="nav-icon">📋</span> 3 rzeczy których nie będziesz wiedział<span class="nav-tag">A2</span></a></li>
+    <li><a href="https://gotowi.info.pl/nawałnica/"><span class="nav-icon">🌩️</span> Pomorze 2017: nie wiedzieliśmy nic<span class="nav-tag">A3</span></a></li>
+  </ul>
+
+  <hr class="drawer-divider">
+  <a href="https://bezpieczneradio.pl/produkt/bezpieczne-radio-7w1-pro-kopia/" class="drawer-product" onclick="fbq('track','Lead')">
+    <div class="drawer-product-label">Rekomendacja redakcji</div>
+    <div class="drawer-product-name">BezpieczneRadio 7w1 PRO</div>
+    <div class="drawer-product-price">199,99 zł →</div>
+  </a>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  const overlay = document.getElementById('drawerOverlay');
+  function toggleDrawer() {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', toggleDrawer);
+  overlay.addEventListener('click', toggleDrawer);
+</script>
+
 
 <div class="top-bar">
   Portal informacyjny &nbsp;<span>|</span>&nbsp; Monitorujemy gotowość Polski na sytuacje kryzysowe &nbsp;<span>|</span>&nbsp; Materiały partnerskie
